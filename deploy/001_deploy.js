@@ -8,6 +8,7 @@ const METHODS = ["get_policy", "get_calibration", "get_anchor", "get_anchor_id",
 const rubric = "Classify an issue as BUG when it describes existing behavior that is broken, incorrect, or failing. Classify it as FEATURE when it requests a new capability or enhancement that does not yet exist.";
 const now = Math.floor(Date.now() / 1000);
 const ARGS = ["ISSUE-TRIAGE-BRADBURY", "V1", rubric, JSON.stringify(["BUG", "FEATURE"]), 3, 10000, 10000, now + 7 * 86400, now + 14 * 86400];
+const EXPECTED_CONTRACT_VERSION = "0.2.1";
 const json = (value) => JSON.stringify(value, (_key, item) => typeof item === "bigint" ? item.toString() : item, 2);
 const named = (value, names) => typeof value === "string" ? value : names[Number(value)];
 const executionSucceeded = (value) => ["FINISHED_WITH_RETURN", "SUCCESS"].includes(named(value, { 1: "FINISHED_WITH_RETURN" }));
@@ -62,6 +63,7 @@ export default async function deploy(client) {
   const schema = await retry("schema readback", () => client.getContractSchema(address));
   for (const method of METHODS) if (!schema?.methods?.[method]) throw new Error(`Missing ABI method ${method}`);
   const policy = await client.readContract({ address, functionName: "get_policy", args: [], jsonSafeReturn: true, transactionHashVariant: "latest-final" });
+  if (policy?.contract_version !== EXPECTED_CONTRACT_VERSION) throw new Error(`Unexpected contract version: ${policy?.contract_version}`);
   const result = { network: "bradbury", address, deployment_transaction: transaction, source_sha256: createHash("sha256").update(code, "utf8").digest("hex"), source_bytes: sourceBytes, deployment_input_bytes: deploymentInputBytes, source_exact_match: true, constructor_args: ARGS, policy, receipt };
   writeArtifact(result);
   console.log(`DEPLOYMENT_RESULT=${json(result)}`);

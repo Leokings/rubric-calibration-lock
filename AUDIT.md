@@ -1,12 +1,16 @@
 # Security and correctness audit
 
-Audit scope: `contracts/RubricCalibrationLock.py` version 0.2.0, the off-chain commitment utility, and direct/integration tests.
+Audit scope: `contracts/RubricCalibrationLock.py` version 0.2.1, the off-chain commitment utility, and direct/integration tests.
 
 ## Outcome
 
-The independent review found no critical or high-severity issue. Three medium findings and lower-severity hardening gaps were remediated in version 0.2.0. Static SDK validation, strict type checking, direct state-machine tests, explicit validator tests, and five-validator GLSim integration remain required release gates; exact source-bound evidence belongs in `TEST_RESULTS.md` and `evidence/`.
+No Critical, High, Medium, or Low finding remains open in v0.2.1. Three Medium findings and lower-severity hardening gaps were remediated in v0.2.0. A subsequent Bradbury semantic smoke exposed one High functional defect in v0.2.0: nondeterministic callbacks indirectly read contract storage, which Bradbury's GenVM rejects. v0.2.1 remediates that defect and adds a regression test. Static SDK validation, strict type checking, direct state-machine tests, explicit validator tests, and five-validator GLSim integration remain required release gates; exact source-bound evidence belongs in `TEST_RESULTS.md` and `evidence/`.
 
 ## Remediated findings
+
+### High — nondeterministic callback read contract storage on Bradbury
+
+The byte-exact v0.2.0 deployment finalized, but its principal `calibrate()` path failed before inference on Bradbury. The leader and validator callbacks indirectly accessed `self` storage while running under `gl.vm.run_nondet_unsafe`; GenVM reported that contract-storage reads in nondeterministic mode are unsupported, all five validators recorded deterministic violations, and no terminal state was written. v0.2.1 constructs the complete immutable classification prompt and copies the ordered anchor IDs and labels while execution is deterministic. The callbacks close only over plain local values and perform no contract-storage reads. A direct AST regression test verifies that neither callback contains a `self` reference. The old deployment proof is retained as superseded negative evidence, not as a successful semantic smoke.
 
 ### Medium — post-deadline calibration race
 
@@ -24,7 +28,7 @@ Individually valid rubric and anchor values could combine into a calibration pro
 
 Version 0.2.0 adds UTF-8 byte limits alongside character limits, bounds raw and canonicalized LLM responses, tests unauthorized calibration and deadline boundaries, narrows prompt-injection claims to schema confinement, permits intentionally sanitized deployment proof files, and retains a sanitized historical GLSim transcript.
 
-Remediated finding groups: 4 total (3 Medium, 1 Low). Open findings after remediation: Critical 0, High 0, Medium 0, Low 0.
+Remediated finding groups: 5 total (1 High, 3 Medium, 1 Low). Open findings after remediation: Critical 0, High 0, Medium 0, Low 0.
 
 ## Properties reviewed
 
@@ -71,11 +75,11 @@ Re-audit after any runner change, storage-layout edit, change to commitment fram
 ## Current verification snapshot
 
 - Open findings: Critical 0, High 0, Medium 0, Low 0.
-- Direct suite: 76 passed.
-- Current contract SHA-256: `6223c37b31351b7b121effd34323152dbb1ec5c187b7e233eb434026f3f8b28e`.
+- Direct suite: 77 passed.
+- Current contract SHA-256: `3c403a31fd155dad704394b34c8c3ef6f2d459c3d19babeaec6d13b6262ec66a` (26,546 bytes).
 - Commitment utility SHA-256: `23695b7b2e7c0314860771cb562aea83684ae6cfce5cf65bafbf24113a954239`.
 - Current-source five-validator GLSim: passed 2/2 with five explicit mock validators.
-- Current-source StudioNet: passed no-mock hosted lifecycle at `0xD0E7AD1037500E9EFF26A711Fa09075E2d545674`; exact source; `ACTIVE`, 3/3 correct and classified, 10,000 bps accuracy and coverage.
-- Current-source Bradbury proof: pending.
+- Current-source StudioNet: passed no-mock hosted lifecycle at `0xC914Af58d5576dF91898B1AF9ef231B8e65364ca`; exact source; `ACTIVE`, 3/3 correct and classified, 10,000 bps accuracy and coverage.
+- Current-source v0.2.1 Bradbury: byte-exact deployment and all eight lifecycle writes finalized successfully with 5/5 agreement; durable `ACTIVE`, 3/3 correct/classified, 10,000 bps accuracy/coverage.
 
-The retained historical GLSim transcript and `studionet-2026-08-12-proof.json` match contract SHA-256 `801a2394a0f4d55f5df85467a1d6aa58a6322c0a5bb136c29c66093d80f19709`; both are explicitly superseded. The current-source proof is `deployments/studionet-2026-08-12-current-proof.json`. Its harness retained neither receipts nor validator identities, votes, vote count, or model names, so the audit makes no such claims.
+The current-source StudioNet proof is `deployments/studionet-2026-08-12-v0.2.1-current-proof.json`. Its harness retained neither receipts nor validator identities, votes, vote count, or model names, so the audit makes no such claims. The v0.2.0 StudioNet proof at `deployments/studionet-2026-08-12-current-proof.json`, the older source-bound StudioNet/GLSim evidence, and the failed v0.2.0 Bradbury semantic smoke are all explicitly superseded. The Bradbury record remains valuable negative regression evidence for the remediated High finding but is ineligible for Portal submission.

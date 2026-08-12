@@ -1,39 +1,48 @@
 # Portal submission
 
-Current-source StudioNet evidence is captured below. Replace GitHub and Bradbury placeholders only with frozen-source evidence before submission; Bradbury is not yet claimed.
+Current-source StudioNet and Bradbury evidence is finalized. The GitHub repository is private until submission; make it public before Portal reviewers evaluate these links.
+
+**Contribution Date**
+
+```text
+08/12/2026
+```
 
 **Title**
 
 ```text
-Rubric Calibration Lock — Reusable Intelligent Contract
+Rubric Calibration Lock - Reusable Intelligent Contract
 ```
 
 **Notes / Description**
 
 ```text
-Built an MIT-licensed Rubric Calibration Lock, a reusable GenLayer contract that prevents a natural-language rubric from activating until committed anchors pass calibration. The deployer fixes labels, thresholds, anchor count, and deadlines; a local utility computes domain-separated commitments without exposing preimages to hosted RPC. After reveal, leader and validators independently classify each anchor into one allowed label or UNCLASSIFIED. Deterministic code computes accuracy and coverage, then locks ACTIVE or DIVERGENT. Prompt budgets cover all anchors and worst-case JSON escaping; LLM responses are capped. Includes 76 direct tests and 2 five-validator mocked GLSim tests. A no-mock StudioNet lifecycle deployed byte-identical source at 0xD0E7AD1037500E9EFF26A711Fa09075E2d545674, finalized all 9 writes, and returned ACTIVE with 3/3 correct and classified anchors at 10000 bps accuracy and coverage. It calibrates a rubric; it does not evaluate production inputs.
+Built an MIT-licensed Rubric Calibration Lock, a reusable GenLayer IC that prevents a natural-language rubric from activating until committed anchors pass calibration. The deployer fixes labels, thresholds, anchor count and deadlines; a local tool computes domain-separated commitments without sending preimages to hosted RPC. After reveal, leader and validators independently classify each anchor into an allowed label or UNCLASSIFIED. Deterministic code computes accuracy and coverage, then irreversibly locks ACTIVE or DIVERGENT. Prompt budgets cover anchors and worst-case JSON escaping; LLM outputs are capped and schema-bound. Includes 77 direct tests and 2/2 five-validator mocked GLSim tests. Byte-exact v0.2.1 passed no-mock StudioNet and finalized on Bradbury at 0x4e4a0a7d9b46089740fa22A1881230753f13c106; its 8-write lifecycle finalized with 5/5 agreement and ACTIVE, 3/3 correct/classified, 10000 bps accuracy/coverage. It calibrates a rubric; it does not evaluate production inputs.
 ```
 
 **Evidence entries**
 
 ```text
 GitHub Repository
-CURRENT_SOURCE_GITHUB_REPOSITORY_URL_PENDING
+https://github.com/Leokings/rubric-calibration-lock
 
-GitHub File — exact contract source
-CURRENT_SOURCE_GITHUB_CONTRACT_SOURCE_URL_PENDING
+GitHub File - exact contract source
+https://github.com/Leokings/rubric-calibration-lock/blob/main/contracts/RubricCalibrationLock.py
 
-GitHub File — testing evidence
-CURRENT_SOURCE_GITHUB_TESTING_URL_PENDING
+GitHub File - testing evidence
+https://github.com/Leokings/rubric-calibration-lock/blob/main/TEST_RESULTS.md
 
 GenLayer Explorer Contract
-CURRENT_SOURCE_BRADBURY_EXPLORER_URL_PENDING
+https://explorer-bradbury.genlayer.com/address/0x4e4a0a7d9b46089740fa22A1881230753f13c106
 
 GenLayer StudioNet Contract Address
-0xD0E7AD1037500E9EFF26A711Fa09075E2d545674
+0xC914Af58d5576dF91898B1AF9ef231B8e65364ca
 
-GitHub File — finalized StudioNet deployment proof
-CURRENT_SOURCE_PUBLIC_REPOSITORY_URL_PENDING/blob/main/deployments/studionet-2026-08-12-current-proof.json
+GitHub File - finalized StudioNet deployment proof
+https://github.com/Leokings/rubric-calibration-lock/blob/main/deployments/studionet-2026-08-12-v0.2.1-current-proof.json
+
+GitHub File - finalized Bradbury deployment and smoke proof
+https://github.com/Leokings/rubric-calibration-lock/blob/main/deployments/bradbury-2026-08-12-v0.2.1-current-proof.json
 ```
 
-Submit under **Intelligent Contracts**. Replace every placeholder, use the actual contribution date, and report only finalized, independently checked results. The StudioNet harness retained no transaction hashes or receipts and exposed no validator identities, votes, vote count, or model names; do not claim them. Add finalized Bradbury evidence before claiming Bradbury.
+Submit under **Intelligent Contracts**. The StudioNet harness retained no transaction hashes or receipts and exposed no validator identities, votes, vote count, or model names; do not claim them. Bradbury exposed transaction/vote counts but not validator model/provider identities, so do not claim heterogeneous-model execution.

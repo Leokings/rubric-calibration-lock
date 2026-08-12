@@ -1,3 +1,4 @@
+import ast
 import datetime
 import json
 from pathlib import Path
@@ -113,7 +114,7 @@ def test_contract_uses_pinned_runner():
 def test_policy_is_immutable_canonical_and_bounded(direct_vm, direct_deploy, direct_alice):
     contract = deploy_lock(direct_vm, direct_deploy, direct_alice, labels=["FEATURE", "BUG"])
     policy = contract.get_policy()
-    assert policy["contract_version"] == "0.2.0"
+    assert policy["contract_version"] == "0.2.1"
     assert policy["policy_version"] == "RUBRIC_CALIBRATION_LOCK_V2"
     assert policy["scope"] == "CALIBRATE_IMMUTABLE_RUBRIC_WITH_LABELED_ANCHORS_ONLY"
     assert policy["controller"].startswith("0x")
@@ -618,3 +619,27 @@ def test_config_and_terminal_digests_are_lowercase_hex(direct_vm, direct_deploy,
         assert len(digest) == 64
         assert digest == digest.lower()
         assert all(character in "0123456789abcdef" for character in digest)
+
+
+def test_nondeterministic_callbacks_do_not_read_contract_storage():
+    """Bradbury rejects `self` storage reads from nondeterministic callbacks."""
+
+    module = ast.parse(CONTRACT_PATH.read_text(encoding="utf-8"))
+    calibrate = next(
+        node
+        for node in ast.walk(module)
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name == "calibrate"
+    )
+    callbacks = {
+        node.name: node
+        for node in calibrate.body
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+    }
+    assert {"leader_fn", "validator_fn"}.issubset(callbacks)
+    for callback in callbacks.values():
+        captured_contract_references = [
+            node
+            for node in ast.walk(callback)
+            if isinstance(node, ast.Name) and node.id == "self"
+        ]
+        assert captured_contract_references == []

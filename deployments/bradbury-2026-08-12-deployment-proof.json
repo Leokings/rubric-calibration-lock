@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "record_type": "superseded_finalized_hosted_deployment_and_failed_smoke",
+  "evidence_scope": "DEPLOYMENT_ONLY",
+  "submission_eligible_for_current_source": false,
+  "superseded_by_contract_version": "0.2.1",
+  "superseded_by_source_sha256": "3c403a31fd155dad704394b34c8c3ef6f2d459c3d19babeaec6d13b6262ec66a",
+  "project": "rubric-calibration-lock",
+  "network": "bradbury",
+  "chain_id": 4221,
+  "rpc": "https://rpc-bradbury.genlayer.com",
+  "recorded_at": "2026-08-12",
+  "source_commit": "d5723d2e5d08aa08b7234ed5e4128d8234bee07b",
+  "contract_address": "0x31B5D3F84AcF2451e0324570349596123ffB406f",
+  "explorer_url": "https://explorer-bradbury.genlayer.com/address/0x31B5D3F84AcF2451e0324570349596123ffB406f",
+  "contract_source": "contracts/RubricCalibrationLock.py",
+  "contract_source_sha256": "6223c37b31351b7b121effd34323152dbb1ec5c187b7e233eb434026f3f8b28e",
+  "contract_source_bytes": 26165,
+  "deployed_source_readback_sha256": "6223c37b31351b7b121effd34323152dbb1ec5c187b7e233eb434026f3f8b28e",
+  "deployed_source_readback_bytes": 26165,
+  "deployed_source_exact_bytes_equal": true,
+  "deployment_input_bytes": 26454,
+  "runner_dependency": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "deployment_transaction_id": "0xb959fd52d0193655e6f5a035dcb1fab528091b39f8c49bbc934e364cebc986e7",
+  "constructor": {
+    "rubric_id": "ISSUE-TRIAGE-BRADBURY",
+    "rubric_version": "V1",
+    "rubric_text": "Classify an issue as BUG when it describes existing behavior that is broken, incorrect, or failing. Classify it as FEATURE when it requests a new capability or enhancement that does not yet exist.",
+    "labels_json": "[\"BUG\",\"FEATURE\"]",
+    "expected_anchor_count": 3,
+    "minimum_accuracy_bps": 10000,
+    "minimum_coverage_bps": 10000,
+    "commit_deadline_unix": 1787152782,
+    "reveal_deadline_unix": 1787757582
+  },
+  "durable_policy_readback": {
+    "succeeded": true,
+    "contract_version": "0.2.0",
+    "policy_version": "RUBRIC_CALIBRATION_LOCK_V2",
+    "scope": "CALIBRATE_IMMUTABLE_RUBRIC_WITH_LABELED_ANCHORS_ONLY",
+    "controller": "0x797d3b25fb2cca0ff93f60df1910267f3822d655",
+    "rubric_id": "ISSUE-TRIAGE-BRADBURY",
+    "rubric_version": "V1",
+    "rubric_text": "Classify an issue as BUG when it describes existing behavior that is broken, incorrect, or failing. Classify it as FEATURE when it requests a new capability or enhancement that does not yet exist.",
+    "labels_json": "[\"BUG\",\"FEATURE\"]",
+    "abstain_label": "UNCLASSIFIED",
+    "expected_anchor_count": 3,
+    "minimum_accuracy_bps": 10000,
+    "minimum_coverage_bps": 10000,
+    "commit_deadline_unix": 1787152782,
+    "reveal_deadline_unix": 1787757582,
+    "config_digest": "229c87e967f47fa503d04d26417d1c41ed91bb79737ef9ad6b095ec9c7b4a772"
+  },
+  "deployment_receipt": {
+    "status": "FINALIZED",
+    "result": "AGREE",
+    "execution_result": "FINISHED_WITH_RETURN",
+    "sender": "0x797d3b25fb2cca0ff93f60df1910267f3822d655",
+    "recipient": "0x31B5D3F84AcF2451e0324570349596123ffB406f",
+    "created_timestamp_unix": 1786547985,
+    "last_vote_timestamp_unix": 1786547995,
+    "evidence_readback_timestamp_unix": 1786549800,
+    "transaction_execution_hash": "0x8f5655fb2f00ff987426e59c519101e1ef944f76da916f44430b7324ab315ddd",
+    "consensus_round_index": 0,
+    "rounds_observed": 1,
+    "validators_observed": 5,
+    "votes_committed": 5,
+    "votes_revealed": 5,
+    "vote_summary": {
+      "AGREE": 5,
+      "DISAGREE": 0,
+      "DETERMINISTIC_VIOLATION": 0
+    },
+    "distinct_validator_result_hashes": 1
+  },
+  "validator_evidence": {
+    "finalized_network_consensus_observed": true,
+    "validator_addresses_published_in_this_record": false,
+    "validator_models_or_providers_observed": false,
+    "heterogeneous_model_execution_claimed": false,
+    "semantic_calibration_consensus_claimed": false
+  },
+  "calibration_smoke": {
+    "status": "FAILED_CLOSED",
+    "transaction_ids": [
+      "0x7cfa28d4b145ad05d59d8d9e08f5e60348d3626e09e9591168f02c9cb702284e",
+      "0xe09aa615ba43b7d63768faf700440f110aad2fe812198bddb60973298146003a",
+      "0x43a93eba4be8d8a36fb7efbbbed25867e0aa1919aeeca6472f74e83ab2eaaa0b",
+      "0x7080d2b803e361eb15bb9573cd3be24c96890b22e8dca03a7a281efe6cb78def",
+      "0xb41db849502f005ac48c4a45c7a2f71245ae4c726416d161952a76b5d6c0886a",
+      "0x139138251e6980a8c985d2ab57e9200df2dbf38300790c690b5a877156d0f741",
+      "0xa536c1de3f99e1a70e7c02c15fa8162263c08f7e04485bbc524deb5ea1fb0ad4",
+      "0xa6f05be5b45b863da6e2dafd9a13e3cec2e4e4ff15754819d0ebc06d56935658"
+    ],
+    "durable_calibration_readback": null,
+    "setup_state": {
+      "status": "REVEALING",
+      "commit_count": 3,
+      "reveal_count": 3,
+      "terminal_digest": ""
+    },
+    "failed_calibration": {
+      "status": "UNDETERMINED",
+      "result": "DISAGREE",
+      "execution_result": "FINISHED_WITH_ERROR",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_summary": {
+        "DETERMINISTIC_VIOLATION": 5
+      },
+      "llm_calls_observed_in_trace": 0,
+      "stderr_summary": "GenVM warned that reading contract storage in nondeterministic mode is unsupported.",
+      "state_written": false
+    },
+    "note": "The immutable v0.2.0 deployment is retained as negative regression evidence. Its semantic path attempted an indirect contract-storage read inside nondeterministic execution and failed before inference. Version 0.2.1 builds the complete prompt in deterministic execution and requires a new deployment."
+  },
+  "sanitization": {
+    "raw_contract_code_included": false,
+    "raw_transaction_calldata_included": false,
+    "validator_addresses_included": false,
+    "secret_preimages_or_salts_included": false
+  },
+  "limitations": [
+    "A finalized deployment proves that this byte-exact contract and policy were accepted and installed; it does not by itself prove that the semantic calibration lifecycle succeeds.",
+    "Validator model and provider identities were not established, so no model independence or heterogeneous execution claim is made.",
+    "This v0.2.0 deployment is superseded and must not be used as current-source Portal evidence.",
+    "Portal submission evidence remains pending until a finalized v0.2.1 Bradbury calibration flow and durable terminal-state readback are recorded."
+  ]
+}

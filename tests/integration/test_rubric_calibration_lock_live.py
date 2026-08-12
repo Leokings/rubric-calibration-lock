@@ -54,6 +54,7 @@ def test_live_consensus_calibrates_clear_closed_rubric():
     print(f"contract_address={contract.address}")
 
     policy = contract.get_policy(args=[]).call()
+    assert policy["contract_version"] == "0.2.1"
     labels = json.loads(policy["labels_json"])
     for anchor_id, text, label, salt in anchors:
         commitment = compute_anchor_commitment(

@@ -11,7 +11,7 @@ import json
 from typing import NoReturn
 
 
-CONTRACT_VERSION = "0.2.0"
+CONTRACT_VERSION = "0.2.1"
 POLICY_VERSION = "RUBRIC_CALIBRATION_LOCK_V2"
 SCOPE = "CALIBRATE_IMMUTABLE_RUBRIC_WITH_LABELED_ANCHORS_ONLY"
 DIGEST_DOMAIN = "GENLAYER_RUBRIC_CALIBRATION_LOCK"
@@ -290,6 +290,13 @@ def _classification_results_match(first: dict, second: dict) -> bool:
     return _canonical_json(first) == _canonical_json(second)
 
 
+def _classify_prompt(prompt: str, anchor_ids: list[str], labels: list[str]) -> dict:
+    """Classify a deterministic prompt without reading contract storage."""
+
+    raw = _parse_llm_json(prompt)
+    return _validate_classifications(raw, anchor_ids, labels)
+
+
 class RubricCalibrationLock(gl.Contract):
     controller: Address
     rubric_id: str
@@ -470,10 +477,6 @@ class RubricCalibrationLock(gl.Contract):
             expected.append(self.anchors[row["anchor_id"]].expected_label)
         return rows, anchor_ids, expected
 
-    def _classify(self, rows: list[dict], anchor_ids: list[str], labels: list[str]) -> dict:
-        raw = _parse_llm_json(_classification_prompt(self.rubric_text, labels, rows))
-        return _validate_classifications(raw, anchor_ids, labels)
-
     @gl.public.view
     def get_policy(self) -> dict:
         return {
@@ -627,16 +630,20 @@ class RubricCalibrationLock(gl.Contract):
             _expected("INCOMPLETE_REVEAL")
         rows, anchor_ids, expected_labels = self._revealed_rows()
         labels = json.loads(self.labels_json)
+        # GenVM forbids contract-storage reads from nondeterministic execution.
+        # Build the complete immutable prompt while still in deterministic mode,
+        # then close over plain local values for leader and validator inference.
+        classification_prompt = _classification_prompt(self.rubric_text, labels, rows)
 
         def leader_fn():
-            return self._classify(rows, anchor_ids, labels)
+            return _classify_prompt(classification_prompt, anchor_ids, labels)
 
         def validator_fn(leader_result) -> bool:
             if not isinstance(leader_result, gl.vm.Return):
                 return False
             try:
                 candidate = _validate_classifications(leader_result.calldata, anchor_ids, labels)
-                independent = self._classify(rows, anchor_ids, labels)
+                independent = _classify_prompt(classification_prompt, anchor_ids, labels)
             except gl.vm.UserError:
                 return False
             return _classification_results_match(candidate, independent)

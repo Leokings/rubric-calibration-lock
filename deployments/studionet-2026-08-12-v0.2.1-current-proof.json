@@ -1,23 +1,26 @@
 {
   "schema_version": 1,
-  "record_type": "superseded_finalized_hosted_deployment_verification",
-  "submission_eligible_for_current_source": false,
-  "superseded_by_contract_version": "0.2.1",
-  "superseded_by_source_sha256": "3c403a31fd155dad704394b34c8c3ef6f2d459c3d19babeaec6d13b6262ec66a",
-  "superseded_by_proof": "deployments/studionet-2026-08-12-v0.2.1-current-proof.json",
-  "superseded_by_contract_address": "0xC914Af58d5576dF91898B1AF9ef231B8e65364ca",
+  "record_type": "finalized_hosted_deployment_verification",
+  "submission_eligible_for_current_source": true,
   "project": "rubric-calibration-lock",
+  "contract_version": "0.2.1",
   "network": "studionet",
   "chain_id": 61999,
   "rpc": "https://studio.genlayer.com/api",
   "recorded_at": "2026-08-12",
-  "contract_address": "0xD0E7AD1037500E9EFF26A711Fa09075E2d545674",
+  "contract_address": "0xC914Af58d5576dF91898B1AF9ef231B8e65364ca",
   "contract_source": "contracts/RubricCalibrationLock.py",
-  "contract_source_sha256": "6223c37b31351b7b121effd34323152dbb1ec5c187b7e233eb434026f3f8b28e",
-  "contract_source_bytes": 26165,
-  "deployed_source_readback_sha256": "6223c37b31351b7b121effd34323152dbb1ec5c187b7e233eb434026f3f8b28e",
-  "deployed_source_readback_bytes": 26165,
+  "contract_source_sha256": "3c403a31fd155dad704394b34c8c3ef6f2d459c3d19babeaec6d13b6262ec66a",
+  "contract_source_bytes": 26546,
+  "deployed_source_readback_sha256": "3c403a31fd155dad704394b34c8c3ef6f2d459c3d19babeaec6d13b6262ec66a",
+  "deployed_source_readback_bytes": 26546,
   "deployed_source_exact_bytes_equal": true,
+  "source_readback": {
+    "rpc_method": "gen_getContractCode",
+    "performed_after_test": true,
+    "result": "EXACT_BYTE_MATCH",
+    "raw_contract_code_included": false
+  },
   "runner_dependency": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
   "test": {
     "command": "gltest tests/integration/test_rubric_calibration_lock_live.py -v -s --network studionet",
@@ -26,8 +29,19 @@
     "result": "PASSED",
     "tests_passed": 1,
     "tests_failed": 0,
-    "elapsed_seconds_reported_by_pytest": 389.67,
+    "elapsed_seconds_reported_by_pytest": 406.99,
+    "shell_elapsed_seconds": 412,
     "leader_only_reported_by_runner": false
+  },
+  "requested_configuration": {
+    "rubric_id": "ISSUE-TRIAGE-LIVE",
+    "rubric_version": "V1",
+    "labels_json": "[\"BUG\",\"FEATURE\"]",
+    "expected_anchor_count": 3,
+    "minimum_accuracy_bps": 10000,
+    "minimum_coverage_bps": 10000,
+    "commit_deadline_offset_hours": 6,
+    "reveal_deadline_offset_hours": 12
   },
   "transaction_evidence": {
     "finalized_execution_success_assertions_passed": 9,
@@ -47,21 +61,13 @@
     "transaction_hashes_retained": false,
     "receipts_retained": false
   },
-  "durable_policy_readback": {
-    "succeeded": true,
-    "contract_version": "0.2.0",
-    "policy_version": "RUBRIC_CALIBRATION_LOCK_V2",
-    "scope": "CALIBRATE_IMMUTABLE_RUBRIC_WITH_LABELED_ANCHORS_ONLY",
-    "rubric_id": "ISSUE-TRIAGE-LIVE",
-    "rubric_version": "V1",
-    "labels_json": "[\"BUG\",\"FEATURE\"]",
-    "abstain_label": "UNCLASSIFIED",
-    "expected_anchor_count": 3,
-    "minimum_accuracy_bps": 10000,
-    "minimum_coverage_bps": 10000,
-    "commit_deadline_unix": 1786566611,
-    "reveal_deadline_unix": 1786588211,
-    "config_digest": "b51f6352925c943d3da9d298cce605addab088ecf95bbe28a5f554f1646df01a"
+  "durable_policy_observations": {
+    "get_policy_call_succeeded": true,
+    "contract_version_asserted": "0.2.1",
+    "labels_used_for_domain_separated_commitments": [
+      "BUG",
+      "FEATURE"
+    ]
   },
   "durable_calibration_readback": {
     "status": "ACTIVE",
@@ -72,8 +78,8 @@
     "classified_count": 3,
     "accuracy_bps": 10000,
     "coverage_bps": 10000,
-    "config_digest": "b51f6352925c943d3da9d298cce605addab088ecf95bbe28a5f554f1646df01a",
-    "terminal_digest": "3511b11b1e9ca16b9a3a27890aad20c9167d97a66438ee89ec1e78fbc29a0018"
+    "config_digest": "8a35c25072ea740db6d1c4d62abad84d8517faeeff076cfebc974b2218b31cc2",
+    "terminal_digest": "7510c1224b47773b144e963a1d91b0e7df200b8078bbf858513feb156a6f0509"
   },
   "validator_evidence": {
     "hosted_no_mock_consensus_completed": true,
@@ -86,6 +92,7 @@
   "transaction_id_note": "The live test did not print or retain transaction IDs; none are invented.",
   "limitations": [
     "The harness did not expose validator identities, model names, individual votes, or vote count; no such claims are made.",
-    "Three deliberately clear anchors establish this bounded smoke case only; they do not establish broad rubric quality or prompt-injection immunity."
+    "Three deliberately clear anchors establish this bounded smoke case only; they do not establish broad rubric quality or prompt-injection immunity.",
+    "The successful runner output printed the final calibration but not the complete policy object or individual receipts; only directly asserted or printed policy observations are retained."
   ]
 }

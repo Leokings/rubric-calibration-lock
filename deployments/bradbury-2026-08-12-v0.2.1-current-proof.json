@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "record_type": "finalized_hosted_deployment_and_semantic_smoke",
+  "submission_eligible_for_current_source": true,
+  "finality_state": "COMPLETE",
+  "project": "rubric-calibration-lock",
+  "contract_version": "0.2.1",
+  "network": "bradbury",
+  "chain_id": 4221,
+  "rpc": "https://rpc-bradbury.genlayer.com",
+  "recorded_at": "2026-08-12",
+  "all_transactions_finalized_observed_at_chain_timestamp_unix": 1786555967,
+  "contract_address": "0x4e4a0a7d9b46089740fa22A1881230753f13c106",
+  "explorer_url": "https://explorer-bradbury.genlayer.com/address/0x4e4a0a7d9b46089740fa22A1881230753f13c106",
+  "contract_source": "contracts/RubricCalibrationLock.py",
+  "contract_source_sha256": "3c403a31fd155dad704394b34c8c3ef6f2d459c3d19babeaec6d13b6262ec66a",
+  "contract_source_bytes": 26546,
+  "deployed_source_readback_sha256": "3c403a31fd155dad704394b34c8c3ef6f2d459c3d19babeaec6d13b6262ec66a",
+  "deployed_source_readback_bytes": 26546,
+  "deployed_source_exact_bytes_equal": true,
+  "deployment_input_bytes": 26835,
+  "runner_dependency": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "deployment": {
+    "transaction_id": "0xe40f6edd7dfcb5b689206143347921a4d3e43f32c8d7c0441ff13ad2c83d1991",
+    "status": "FINALIZED",
+    "result": "AGREE",
+    "execution_result": "FINISHED_WITH_RETURN",
+    "transaction_execution_hash": "0xbc39a040e5509ba0be7b116a3ccdfca17c214cb0b0a2f8dfcf924f6730582bb6",
+    "round": 0,
+    "votes_committed": 5,
+    "votes_revealed": 5,
+    "vote_summary": {
+      "AGREE": 5,
+      "DISAGREE": 0,
+      "DETERMINISTIC_VIOLATION": 0
+    },
+    "distinct_validator_result_hashes": 1
+  },
+  "durable_policy_readback": {
+    "contract_version": "0.2.1",
+    "policy_version": "RUBRIC_CALIBRATION_LOCK_V2",
+    "scope": "CALIBRATE_IMMUTABLE_RUBRIC_WITH_LABELED_ANCHORS_ONLY",
+    "controller": "0x797d3b25fb2cca0ff93f60df1910267f3822d655",
+    "rubric_id": "ISSUE-TRIAGE-BRADBURY",
+    "rubric_version": "V1",
+    "labels_json": "[\"BUG\",\"FEATURE\"]",
+    "abstain_label": "UNCLASSIFIED",
+    "expected_anchor_count": 3,
+    "minimum_accuracy_bps": 10000,
+    "minimum_coverage_bps": 10000,
+    "commit_deadline_unix": 1787156552,
+    "reveal_deadline_unix": 1787761352,
+    "config_digest": "3e89feee8836619d1a77d305b7b50bfceba6a799329545f2f436c47979b5fabd"
+  },
+  "smoke_transactions": [
+    {
+      "operation": "commit_anchor:ANCHOR-01",
+      "transaction_id": "0xbdccc0bb0f977b0b255e86e3237fced7bc2a72422eac16bedbff467bff5c6c5b",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0xa3052a6a84519abce53b53e72099babffb715eb20812b324a3a0c1bf8560fe07",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5
+    },
+    {
+      "operation": "commit_anchor:ANCHOR-02",
+      "transaction_id": "0xbc8472f52df9e842e40f7d7defa7fdd3edfd2fccf3993cc0ca224239a7d96d28",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0x6ca9e6d1a8f77329b2161a83b8f298bca0e4ad564a121566835e6354a39e0056",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5
+    },
+    {
+      "operation": "commit_anchor:ANCHOR-03",
+      "transaction_id": "0xea135650015ed9e6082178b8dbe01ce2e25af0f8a4c4a0dbef6c937f197d19d6",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0xcfea7d30872f755bd227caeff18139c2973113f6c8f433f4c792e690d2d37439",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5
+    },
+    {
+      "operation": "open_reveal",
+      "transaction_id": "0x53cc5e21f719e0736ffd961ff8b2d75edd762b9502203a94a2c95569d9128944",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0x945e27e4474ed644f3291692385d0af52341353eaa382a36a9377422d8da5749",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5
+    },
+    {
+      "operation": "reveal_anchor:ANCHOR-01",
+      "transaction_id": "0x17d421ab2d0be60be7b59a87ae4e1eaa5d54cf78ec6e03f6038f18f81f1c56ef",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0x0dc5dd03717fe586c8e47da0a5cbdf7054459682e6604cadcdf58594318dd314",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5
+    },
+    {
+      "operation": "reveal_anchor:ANCHOR-02",
+      "transaction_id": "0x1556b865f914ba52e948768efa2e03a08ab9760c396d4cec6d98fb4eee4976a0",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0x75caa31aa07e62081842e426166932630db00068c81b8932baf7130699cb52a1",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5
+    },
+    {
+      "operation": "reveal_anchor:ANCHOR-03",
+      "transaction_id": "0x8c40fcfd9a4d90ae3116ef8b0b7a1bc7a4fafc91be613994115a971e954dcc2f",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0x6ea166e1a589b4de94f73ed0b54990adc3baa29bb1d89d56e1c477f8b67c4aa2",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5
+    },
+    {
+      "operation": "calibrate",
+      "transaction_id": "0xd47d48bbdab70ebf54901cf7391ad0ad420051c617439126bfdde88683c6e2cf",
+      "status": "FINALIZED",
+      "result": "AGREE",
+      "execution_result": "FINISHED_WITH_RETURN",
+      "transaction_execution_hash": "0x65165e4601abd74974c4a9ab266f80ab800bb2848b5dc5d8f2555e2ad8371630",
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "agree_votes": 5,
+      "distinct_validator_result_hashes": 1
+    }
+  ],
+  "semantic_execution_evidence": {
+    "onchain_calibrate_equivalence_outputs": 1,
+    "onchain_calibrate_consensus": "5_OF_5_AGREE",
+    "read_only_leader_replay": {
+      "rpc_method": "gen_call",
+      "transaction_calldata": "calibrate()",
+      "from": "0x797d3b25fb2cca0ff93f60df1910267f3822d655",
+      "to": "0x4e4a0a7d9b46089740fa22A1881230753f13c106",
+      "block_number_hex": "0x1082a98",
+      "block_number_decimal": 17312408,
+      "state_point": "CALIBRATE_ACTIVATION_PRE_STATE",
+      "persisted_state_mutation": false,
+      "status": "SUCCESS",
+      "equivalence_outputs": 1,
+      "llm_module_calls": 1,
+      "web_module_calls": 0,
+      "stderr_empty": true
+    },
+    "read_only_validator_replay": {
+      "rpc_method": "gen_call",
+      "transaction_calldata": "calibrate()",
+      "block_number_hex": "0x1082a98",
+      "state_point": "CALIBRATE_ACTIVATION_PRE_STATE",
+      "leader_equivalence_outputs_supplied": 1,
+      "persisted_state_mutation": false,
+      "status": "SUCCESS",
+      "llm_module_calls": 1,
+      "nondeterministic_disagreement_call_number": null,
+      "stderr_empty": true
+    },
+    "interpretation": "The finalized on-chain call produced one semantic equivalence output and 5/5 agreement. Read-only leader and validator replays of the exact call at its activation pre-state each directly recorded one GenVM LLM-module call; neither replay could persist state."
+  },
+  "durable_calibration_readback": {
+    "status": "ACTIVE",
+    "reason_code": "CALIBRATION_THRESHOLDS_MET",
+    "commit_count": 3,
+    "reveal_count": 3,
+    "correct_count": 3,
+    "classified_count": 3,
+    "accuracy_bps": 10000,
+    "coverage_bps": 10000,
+    "config_digest": "3e89feee8836619d1a77d305b7b50bfceba6a799329545f2f436c47979b5fabd",
+    "terminal_digest": "41485a9539bcdf9c68b6aacf4b494d0589a67c451a1cef888b6757233b354d08"
+  },
+  "anchor_outcomes": [
+    {
+      "anchor_id": "ANCHOR-01",
+      "expected_label": "BUG",
+      "predicted_label": "BUG"
+    },
+    {
+      "anchor_id": "ANCHOR-02",
+      "expected_label": "FEATURE",
+      "predicted_label": "FEATURE"
+    },
+    {
+      "anchor_id": "ANCHOR-03",
+      "expected_label": "BUG",
+      "predicted_label": "BUG"
+    }
+  ],
+  "validator_evidence": {
+    "validators_per_transaction": 5,
+    "votes_committed_per_transaction": 5,
+    "votes_revealed_per_transaction": 5,
+    "agree_votes_per_transaction": 5,
+    "validator_addresses_published_in_this_record": false,
+    "validator_models_or_providers_observed": false,
+    "heterogeneous_model_execution_claimed": false
+  },
+  "sanitization": {
+    "raw_contract_code_included": false,
+    "raw_transaction_calldata_included": false,
+    "validator_addresses_included": false,
+    "private_keys_included": false,
+    "anchor_salts_included": false,
+    "unredacted_local_artifacts_included": false
+  },
+  "limitations": [
+    "Validator model and provider identities were not established, so no heterogeneous-model claim is made.",
+    "The read-only leader and validator replays prove both current semantic paths perform an LLM call at the transaction's activation pre-state; they are supplementary to, not replacements for, the on-chain consensus receipt.",
+    "Three deliberately clear anchors establish this bounded calibration case only; they do not establish broad rubric quality or prompt-injection immunity."
+  ]
+}
