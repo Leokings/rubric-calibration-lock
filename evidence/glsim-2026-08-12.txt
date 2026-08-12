@@ -1,0 +1,45 @@
+Rubric Calibration Lock V2 — sanitized GLSim release-gate transcript
+Recorded at: 2026-08-12T13:09:37Z
+
+Scope
+-----
+Command: gltest tests/integration/test_rubric_calibration_lock_glsim.py -v -s --network localnet
+GLSim launch: python tests/run_glsim.py --port 4112 --validators 5 --no-browser
+Platform: Windows, Python 3.13.9
+pytest: 8.4.2
+genlayer-test: 0.29.2
+Validator profiles: 5 separate mocked profiles with the same bounded response
+
+Pinned evidence hashes
+----------------------
+contracts/RubricCalibrationLock.py SHA-256:
+801a2394a0f4d55f5df85467a1d6aa58a6322c0a5bb136c29c66093d80f19709
+
+scripts/commitment.py SHA-256:
+23695b7b2e7c0314860771cb562aea83684ae6cfce5cf65bafbf24113a954239
+
+tests/direct/test_rubric_calibration_lock.py SHA-256:
+9c1a5a58bb150ab7085bc0bbcba01601a4cda28961bd38f141f42c8ae26876d2
+
+tests/direct/test_commitment_utility.py SHA-256:
+d365c36f035a2abead766099e5383a56b70431c0f1ea2528458cf17d4e40c9a8
+
+tests/integration/test_rubric_calibration_lock_glsim.py SHA-256:
+0dc4e8aea42b477c2317e26b1e1beb759e0060badb9e009b413709b785190eb8
+
+Observed result
+---------------
+collected 2 items
+
+test_five_validator_consensus_locks_active_rubric PASSED
+test_five_validator_malformed_output_fails_without_state_change PASSED
+
+2 passed in 4.83s
+
+Interpretation
+--------------
+This reproducibly verifies five-validator consensus plumbing, persistence of a
+successful ACTIVE result, and failure without terminal state mutation for a
+malformed leader result. Identical mocked responses do not demonstrate model
+diversity, independent semantic quality, StudioNet behavior, or Bradbury
+behavior. No hosted-network claim is supported by this transcript.

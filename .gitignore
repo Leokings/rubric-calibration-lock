@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.gltest_cache/
+.artifacts/
+.env
+.env.*
+!.env.example
+artifacts/
+deployments/*.json
+!deployments/template.json
+!deployments/*-proof.json
+!deployments/*-public.json
+*.log
+*.pid

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "record_type": "finalized_hosted_deployment_verification",
+  "submission_eligible_for_current_source": true,
+  "project": "rubric-calibration-lock",
+  "network": "studionet",
+  "chain_id": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "recorded_at": "2026-08-12",
+  "contract_address": "0xD0E7AD1037500E9EFF26A711Fa09075E2d545674",
+  "contract_source": "contracts/RubricCalibrationLock.py",
+  "contract_source_sha256": "6223c37b31351b7b121effd34323152dbb1ec5c187b7e233eb434026f3f8b28e",
+  "contract_source_bytes": 26165,
+  "deployed_source_readback_sha256": "6223c37b31351b7b121effd34323152dbb1ec5c187b7e233eb434026f3f8b28e",
+  "deployed_source_readback_bytes": 26165,
+  "deployed_source_exact_bytes_equal": true,
+  "runner_dependency": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "test": {
+    "command": "gltest tests/integration/test_rubric_calibration_lock_live.py -v -s --network studionet",
+    "test_file": "tests/integration/test_rubric_calibration_lock_live.py",
+    "gltest_version": "0.29.2",
+    "result": "PASSED",
+    "tests_passed": 1,
+    "tests_failed": 0,
+    "elapsed_seconds_reported_by_pytest": 389.67,
+    "leader_only_reported_by_runner": false
+  },
+  "transaction_evidence": {
+    "finalized_execution_success_assertions_passed": 9,
+    "operations": [
+      "deploy",
+      "commit_anchor:ANCHOR-01",
+      "commit_anchor:ANCHOR-02",
+      "commit_anchor:ANCHOR-03",
+      "open_reveal",
+      "reveal_anchor:ANCHOR-01",
+      "reveal_anchor:ANCHOR-02",
+      "reveal_anchor:ANCHOR-03",
+      "calibrate"
+    ],
+    "wait_status_requested_for_each": "FINALIZED",
+    "execution_success_checked_with": "gltest.assertions.tx_execution_succeeded",
+    "transaction_hashes_retained": false,
+    "receipts_retained": false
+  },
+  "durable_policy_readback": {
+    "succeeded": true,
+    "contract_version": "0.2.0",
+    "policy_version": "RUBRIC_CALIBRATION_LOCK_V2",
+    "scope": "CALIBRATE_IMMUTABLE_RUBRIC_WITH_LABELED_ANCHORS_ONLY",
+    "rubric_id": "ISSUE-TRIAGE-LIVE",
+    "rubric_version": "V1",
+    "labels_json": "[\"BUG\",\"FEATURE\"]",
+    "abstain_label": "UNCLASSIFIED",
+    "expected_anchor_count": 3,
+    "minimum_accuracy_bps": 10000,
+    "minimum_coverage_bps": 10000,
+    "commit_deadline_unix": 1786566611,
+    "reveal_deadline_unix": 1786588211,
+    "config_digest": "b51f6352925c943d3da9d298cce605addab088ecf95bbe28a5f554f1646df01a"
+  },
+  "durable_calibration_readback": {
+    "status": "ACTIVE",
+    "reason_code": "CALIBRATION_THRESHOLDS_MET",
+    "commit_count": 3,
+    "reveal_count": 3,
+    "correct_count": 3,
+    "classified_count": 3,
+    "accuracy_bps": 10000,
+    "coverage_bps": 10000,
+    "config_digest": "b51f6352925c943d3da9d298cce605addab088ecf95bbe28a5f554f1646df01a",
+    "terminal_digest": "3511b11b1e9ca16b9a3a27890aad20c9167d97a66438ee89ec1e78fbc29a0018"
+  },
+  "validator_evidence": {
+    "hosted_no_mock_consensus_completed": true,
+    "validator_vote_count_observed": null,
+    "validator_models_observed": null,
+    "heterogeneous_model_execution_claimed": false
+  },
+  "deployment_transaction_id": null,
+  "smoke_transaction_ids": null,
+  "transaction_id_note": "The live test did not print or retain transaction IDs; none are invented.",
+  "limitations": [
+    "The harness did not expose validator identities, model names, individual votes, or vote count; no such claims are made.",
+    "Three deliberately clear anchors establish this bounded smoke case only; they do not establish broad rubric quality or prompt-injection immunity."
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "project": "rubric-calibration-lock",
+  "contract_version": "0.2.0",
+  "network": "studionet",
+  "chain_id": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "recorded_at": "2026-08-12T13:27:21Z",
+  "source_commit": null,
+  "contract_address": "0x7EF97ea43FAb9291Fb9b80DdfF4ca4584266c305",
+  "contract_source": "contracts/RubricCalibrationLock.py",
+  "contract_source_sha256": "801a2394a0f4d55f5df85467a1d6aa58a6322c0a5bb136c29c66093d80f19709",
+  "runner_dependency": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "test": {
+    "command": "gltest tests/integration/test_rubric_calibration_lock_live.py -v -s --network studionet",
+    "test_file": "tests/integration/test_rubric_calibration_lock_live.py",
+    "gltest_version": "0.29.2",
+    "result": "PASSED",
+    "tests_passed": 1,
+    "tests_failed": 0,
+    "elapsed_seconds_reported_by_pytest": 417.70,
+    "leader_only_reported_by_runner": false
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "result": "INFRASTRUCTURE_RATE_LIMIT",
+      "rpc_error_code": -32029,
+      "rpc_error_message": "Rate limit exceeded: 30 requests per minute",
+      "execution_result_obtained": false
+    },
+    {
+      "attempt": 2,
+      "result": "PASSED",
+      "execution_result_obtained": true
+    }
+  ],
+  "constructor": {
+    "rubric_id": "ISSUE-TRIAGE-LIVE",
+    "rubric_version": "V1",
+    "rubric_text": "Classify an issue as BUG when it describes existing behavior that is broken, incorrect, or failing. Classify it as FEATURE when it requests a new capability or enhancement that does not yet exist.",
+    "labels_json": "[\"BUG\",\"FEATURE\"]",
+    "expected_anchor_count": 3,
+    "minimum_accuracy_bps": 10000,
+    "minimum_coverage_bps": 10000,
+    "commit_deadline_unix": null,
+    "reveal_deadline_unix": null,
+    "deadline_construction": "The test generated commit_deadline_unix as run_start + 6 hours and reveal_deadline_unix as run_start + 12 hours; exact values were not printed or retained."
+  },
+  "policy_readback": {
+    "succeeded_in_test_process": true,
+    "labels_json_parsed_for_local_commitments": "[\"BUG\",\"FEATURE\"]",
+    "config_digest_used_for_local_commitments": "1c2ebb918cb22d9e39a89d0d455d61fedee7bb2c82de18ab14779f50675b9c12",
+    "full_payload_retained": false
+  },
+  "transaction_evidence": {
+    "finalized_execution_success_assertions_passed": 9,
+    "operations": [
+      "deploy",
+      "commit_anchor:ANCHOR-01",
+      "commit_anchor:ANCHOR-02",
+      "commit_anchor:ANCHOR-03",
+      "open_reveal",
+      "reveal_anchor:ANCHOR-01",
+      "reveal_anchor:ANCHOR-02",
+      "reveal_anchor:ANCHOR-03",
+      "calibrate"
+    ],
+    "wait_status_requested_for_each": "FINALIZED",
+    "execution_success_checked_with": "gltest.assertions.tx_execution_succeeded",
+    "transaction_hashes_retained": false,
+    "receipts_retained": false
+  },
+  "calibration_readback": {
+    "status": "ACTIVE",
+    "reason_code": "CALIBRATION_THRESHOLDS_MET",
+    "commit_count": 3,
+    "reveal_count": 3,
+    "correct_count": 3,
+    "classified_count": 3,
+    "accuracy_bps": 10000,
+    "coverage_bps": 10000,
+    "config_digest": "1c2ebb918cb22d9e39a89d0d455d61fedee7bb2c82de18ab14779f50675b9c12",
+    "terminal_digest": "051c4d5f954257d1aa9c7bd87e30d7982b5e3859bd3edd837db3e85a2809bed7"
+  },
+  "validator_evidence": {
+    "validator_vote_count_observed": null,
+    "validator_models_observed": null,
+    "heterogeneous_model_execution_established": false
+  },
+  "post_run_cli_readback": {
+    "succeeded": false,
+    "observed_error_code": -32001,
+    "observed_error": "contract not found at address",
+    "interpretation": "The contract was readable inside the successful gltest process, but durable or publicly discoverable StudioNet state was not established by the standalone CLI."
+  },
+  "limitations": [
+    "The source was not yet committed when this run occurred; the source SHA-256 is the binding evidence.",
+    "The test did not print or retain transaction hashes or full receipts.",
+    "The test did not expose validator vote count, validator identities, or model providers; no such claims are made.",
+    "The full get_policy payload and exact runtime-generated deadlines were not retained.",
+    "The standalone CLI could not retrieve the contract after the test process exited, so this is session-scoped hosted integration evidence rather than durable Explorer deployment proof.",
+    "Three deliberately clear anchors establish this bounded smoke case only; they do not establish broad rubric quality or prompt-injection immunity."
+  ]
+}

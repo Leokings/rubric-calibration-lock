@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "project": "rubric-calibration-lock",
+  "network": "NETWORK_NAME",
+  "chain_id": 0,
+  "recorded_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "source_commit": "FULL_COMMIT_SHA",
+  "contract_address": "CONTRACT_ADDRESS",
+  "contract_source": "contracts/RubricCalibrationLock.py",
+  "contract_source_sha256": "SOURCE_SHA256",
+  "runner_dependency": "PINNED_RUNNER_HEADER",
+  "deployment_receipt": {},
+  "constructor": {
+    "rubric_id": "RUBRIC_ID",
+    "rubric_version": "RUBRIC_VERSION",
+    "rubric_text": "RUBRIC_TEXT",
+    "labels_json": "[]",
+    "expected_anchor_count": 0,
+    "minimum_accuracy_bps": 0,
+    "minimum_coverage_bps": 0,
+    "commit_deadline_unix": 0,
+    "reveal_deadline_unix": 0
+  },
+  "policy": {},
+  "commitment_transactions": [],
+  "reveal_transactions": [],
+  "calibration_receipt": {},
+  "calibration": {},
+  "limitations": []
+}
